@@ -1,0 +1,40 @@
+.initialBlock{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nameOne,.nameTwo{
+    font-size: 1.5rem;
+    padding: 0.1rem;
+    margin: 23px;
+    border-top: 0; 
+    border-left: 0; 
+    border-right: 0; 
+    border-bottom: 0; 
+    /* outline: dashed; */
+    outline: thick ridge pink;
+}
+
+#label{
+    font-size: 1.2rem;
+}
+
+.btn {
+    margin: 0 23px;
+    padding: 1px 14px;
+    background-color: rgb(250, 235, 249);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.next{
+    position: absolute;
+    bottom: 2vw;
+    right: 2vw;   
+}
