@@ -63,11 +63,13 @@ nav ul {
 .containerButton{
     display: flex;
     justify-content: center ;
-    position: absolute;
+    /* position: absolute;
     bottom: 2vw;
-    right: 2vw;
+    right: 2vw; */
 
 }
+
+
 
 .gameInfo {
     /* background-color: rebeccapurple; */
@@ -108,6 +110,15 @@ nav ul {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     font-weight: bolder;
+    position: absolute;
+    bottom: 2vw;
+    right: 2vw;
+}
+
+#goBack{
+    position: absolute;
+    bottom: 2vw;
+    left: 2vw;
 }
 
 .line
