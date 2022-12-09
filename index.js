@@ -4,8 +4,9 @@ let gameOver = new Audio("gameover.mp3");
 let turns = "X";
 let isgameOver = false;
 
-if(document.querySelector(".info").innerText==''){
-  document.querySelector(".info").innerText =`${localStorage.getItem('firstPlayer')}'s `+ "Turn"
+if (document.querySelector(".info").innerText == "") {
+  document.querySelector(".info").innerText =
+    `${localStorage.getItem("firstPlayer")}'s ` + "Turn";
 }
 
 //Function to Change the turn
@@ -28,7 +29,7 @@ const checkWin = () => {
     [2, 4, 6, 5, 15, 135],
   ];
 
-  wins.forEach((e) => {
+  wins.forEach((e, i, a) => {
     if (
       boxTexts[e[0]].innerText === boxTexts[e[1]].innerText &&
       boxTexts[e[2]].innerText === boxTexts[e[1]].innerText &&
@@ -37,19 +38,46 @@ const checkWin = () => {
       // document.querySelector(".info").innerText =
       //   boxTexts[e[0]].innerText + " Won";
       if (boxTexts[e[0]].innerText == "X") {
-        document.querySelector(".info").innerText = `${localStorage.getItem('firstPlayer')} Won`;
+        document.querySelector(".info").innerText = `${localStorage.getItem(
+          "firstPlayer"
+        )} Won`;
       } else {
-        document.querySelector(".info").innerText = `${localStorage.getItem('secondPlayer')} Won`;
+        document.querySelector(".info").innerText = `${localStorage.getItem(
+          "secondPlayer"
+        )} Won`;
       }
       isgameOver = true;
       document
         .querySelector(".imgBox")
         .getElementsByTagName("img")[0].style.width = "200px";
-      document.querySelector(".line").style.width = "20vw";
-      document.querySelector(
-        ".line"
-      ).style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`;
-      document.querySelector(".line").style.width = "20vw";
+
+      //Media Query
+      var mq = window.matchMedia("(max-width: 800px)");
+      if (mq.matches) {
+        // window width is at less than 570px
+        boxTexts[e[0]].parentElement.style.backgroundColor = "#e6f8fb";
+        boxTexts[e[1]].parentElement.style.backgroundColor = "#e6f8fb";
+        boxTexts[e[2]].parentElement.style.backgroundColor = "#e6f8fb";
+      } else {
+        // window width is greater than 570px
+        document.querySelector(".line").style.width = "20vw";
+        document.querySelector(
+          ".line"
+        ).style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`;
+
+        
+      }
+
+      // document.querySelector(".line").style.width = "20vw";
+      // document.querySelector(
+      //   ".line"
+      // ).style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`;
+
+      // boxTexts[e[0]].parentElement.style.backgroundColor = "#e6f8fb";
+      // boxTexts[e[1]].parentElement.style.backgroundColor = "#e6f8fb";
+      // boxTexts[e[2]].parentElement.style.backgroundColor = "#e6f8fb";
+
+      // document.querySelector(".line").style.width = "20vw";
       Array.from(document.getElementsByClassName("box")).forEach((element) => {
         element.style.pointerEvents = "none";
       });
@@ -75,11 +103,11 @@ Array.from(boxes).forEach((element) => {
           //this is extra
           document.getElementsByClassName(
             "info"
-          )[0].innerText = `${localStorage.getItem('firstPlayer')}'s Turn`;
+          )[0].innerText = `${localStorage.getItem("firstPlayer")}'s Turn`;
         } else {
           document.getElementsByClassName(
             "info"
-          )[0].innerText = `${localStorage.getItem('secondPlayer')}'s Turn`;
+          )[0].innerText = `${localStorage.getItem("secondPlayer")}'s Turn`;
         }
       }
     }
@@ -92,11 +120,14 @@ reset.addEventListener("click", (e) => {
   let boxTexts = document.getElementsByClassName("boxText");
   Array.from(boxTexts).forEach((element) => {
     element.innerText = "";
+    element.parentElement.style.backgroundColor = "white";
   });
   turns = "X";
   isgameOver = false;
   // document.getElementsByClassName("info")[0].innerText = "Turn for " + turns;
-  document.querySelector(".info").innerText = `${localStorage.getItem('firstPlayer')}'s Turn`;
+  document.querySelector(".info").innerText = `${localStorage.getItem(
+    "firstPlayer"
+  )}'s Turn`;
   document.querySelector(".imgBox").getElementsByTagName("img")[0].style.width =
     "0";
   document.querySelector(".line").style.width = 0;
