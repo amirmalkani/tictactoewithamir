@@ -41,10 +41,12 @@ const checkWin = () => {
         document.querySelector(".info").innerText = `${localStorage.getItem(
           "firstPlayer"
         )} Won`;
+        speak(`${localStorage.getItem("firstPlayer")} Won`);
       } else {
         document.querySelector(".info").innerText = `${localStorage.getItem(
           "secondPlayer"
         )} Won`;
+        speak(`${localStorage.getItem("secondPlayer")} Won`);
       }
       isgameOver = true;
       document
@@ -64,8 +66,6 @@ const checkWin = () => {
         document.querySelector(
           ".line"
         ).style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`;
-
-        
       }
 
       // document.querySelector(".line").style.width = "20vw";
@@ -81,6 +81,7 @@ const checkWin = () => {
       Array.from(document.getElementsByClassName("box")).forEach((element) => {
         element.style.pointerEvents = "none";
       });
+      music.pause();
       gameOver.play();
     }
   });
@@ -88,6 +89,7 @@ const checkWin = () => {
 
 //Game Logic
 let boxes = document.getElementsByClassName("box");
+music.play();
 Array.from(boxes).forEach((element) => {
   let boxText = element.querySelector(".boxText");
   element.addEventListener("click", () => {
@@ -117,6 +119,7 @@ Array.from(boxes).forEach((element) => {
 //Add onclick Listener on reset
 
 reset.addEventListener("click", (e) => {
+  music.play();
   let boxTexts = document.getElementsByClassName("boxText");
   Array.from(boxTexts).forEach((element) => {
     element.innerText = "";
@@ -141,3 +144,10 @@ reset.addEventListener("click", (e) => {
 goBack.addEventListener("click", () => {
   window.location.href = "index.html";
 });
+
+
+const speak = (texts) => {
+  let msg = new SpeechSynthesisUtterance();
+  msg.text = texts;
+  window.speechSynthesis.speak(msg);
+}
